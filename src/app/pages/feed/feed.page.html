@@ -1,0 +1,118 @@
+<ion-header [translucent]="false">
+  <img src="../../../assets/logo_feed.svg" alt="Logo Collabore" />
+  <ion-title>Collabore</ion-title>
+</ion-header>
+
+<ion-content [fullscreen]="false">
+  <ion-card>
+    <ion-card-header>
+      <img src="../../../assets/modo-serio.png" alt="Foto de Perfil" />
+      <ion-card-content>
+        <ion-card-title>Usuario User</ion-card-title>
+        <ion-card-subtitle>Marília-sp</ion-card-subtitle>
+      </ion-card-content>
+    </ion-card-header>
+
+    <ion-card-content>
+      <img src="../../../assets/coreto.png" alt="Foto do Acontecimento" />
+      <div class="botoes">
+        <div class="esquerda">
+          <button class="like">
+            <ion-icon name="heart-outline"></ion-icon>
+          </button>
+          <button class="coments">
+            <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+          </button>
+        </div>
+        <button class="report">
+          <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+        </button>
+      </div>
+    </ion-card-content>
+
+    <div class="rodape">
+      <h3>Aconteceu alguma coisa ai óh</h3>
+      <ion-card-subtitle>Elogio</ion-card-subtitle>
+      <p>
+        {{ comentary.length <= limitCard ? comentary : (comentary |
+        slice:0:limitCard) + '...' }}
+      </p>
+    </div>
+  </ion-card>
+
+  <!-- --------------------------------------------------------------------------------------- -->
+
+  <ion-card>
+    <ion-card-header>
+      <img src="../../../assets/modo-serio.png" alt="Foto de Perfil" />
+      <ion-card-content>
+        <ion-card-title>Usuario User</ion-card-title>
+        <ion-card-subtitle>Cidade-sp</ion-card-subtitle>
+      </ion-card-content>
+    </ion-card-header>
+
+    <ion-card-content>
+      <img src="../../../assets/coreto.png" alt="Foto do Acontecimento" />
+      <div class="botoes">
+        <div class="esquerda">
+          <button class="like">
+            <ion-icon name="heart-outline"></ion-icon>
+          </button>
+          <button class="coments">
+            <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+          </button>
+        </div>
+        <button class="report">
+          <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+        </button>
+      </div>
+    </ion-card-content>
+
+    <div class="rodape">
+      <h3>Aconteceu alguma coisa ai óh</h3>
+      <ion-card-subtitle>Elogio</ion-card-subtitle>
+      <p>
+        {{ comentary.length <= limitCard ? comentary : (comentary |
+        slice:0:limitCard) + '...' }}
+      </p>
+    </div>
+  </ion-card>
+
+  <!-- ---------------------------------------------------------------------------------- -->
+
+  <ion-card>
+    <ion-card-header>
+      <img src="../../../assets/modo-serio.png" alt="Foto de Perfil" />
+      <ion-card-content>
+        <ion-card-title>Usuario User</ion-card-title>
+        <ion-card-subtitle>Cidade-sp</ion-card-subtitle>
+      </ion-card-content>
+    </ion-card-header>
+
+    <ion-card-content>
+      <img src="../../../assets/coreto.png" alt="Foto do Acontecimento" />
+      <div class="botoes">
+        <div class="esquerda">
+          <button class="like">
+            <ion-icon name="heart-outline"></ion-icon>
+          </button>
+          <button class="coments">
+            <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+          </button>
+        </div>
+        <button class="report">
+          <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+        </button>
+      </div>
+    </ion-card-content>
+
+    <div class="rodape">
+      <h3>Aconteceu alguma coisa ai óh</h3>
+      <ion-card-subtitle>Elogio</ion-card-subtitle>
+      <p>
+        {{ comentary.length <= limitCard ? comentary : (comentary |
+        slice:0:limitCard) + '...' }}
+      </p>
+    </div>
+  </ion-card>
+</ion-content>
