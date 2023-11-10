@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./new-post.page.scss'],
 })
 export class NewPostPage implements OnInit {
+  constructor() {}
 
-  constructor() { }
+  selectedSegment: string = 'elogio';
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  segmentChanged(segment: string) {
+    this.selectedSegment = segment;
   }
-
 }
