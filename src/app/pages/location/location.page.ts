@@ -8,14 +8,39 @@ import * as L from 'leaflet';
   styleUrls: ['./location.page.scss'],
 })
 export class LocationPage implements OnInit {
+
+  // map!: L.Map
+
+
+  // constructor() { }
+
+  // ngOnInit() {
+  //     this.map = L.map('map', {
+  //       center: [25.3791924, 55.4765436],
+  //       zoom: 15,
+  //       renderer: L.canvas()
+  //     })
+
+  //   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  //     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  //   }).addTo(this.map)
+
+  //   setTimeout(() => {
+  //     this.map.invalidateSize();
+  //   }, 0);
+  // }
+
+
+
+
   map!: L.Map;
   customIcon!: L.Icon;
   circle!: L.Circle;
   marker!: L.Marker;
   constructor(private router: Router) {}
 
-  ngOnInit() {
-    this.initMap();
+  async ngOnInit() {
+    await this.initMap();
   }
 
   async initMap() {
@@ -26,6 +51,10 @@ export class LocationPage implements OnInit {
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(this.map);
 
+      setTimeout(() => {
+        this.map.invalidateSize();
+      }, 0);
+
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -34,9 +63,9 @@ export class LocationPage implements OnInit {
 
           console.log(lat, ' ', lon);
 
-          this.map.setView([lat, lon], 14);
+          this.map.setView([lat, lon], 15);
 
-          const iconSize: [number, number] = [10, 20];
+          const iconSize: [number, number] = [20, 20];
           const iconAnchor: [number, number] = [iconSize[0] / 2, iconSize[1]];
           const popupAnchor: [number, number] = [0, -iconSize[1]];
 
@@ -89,7 +118,7 @@ export class LocationPage implements OnInit {
     }
   }
 
-  voltarHome(): void {
-    this.router.navigate(['/tabs/new-post']);
-  }
+  // voltarHome(): void {
+  //   this.router.navigate(['/tabs/new-post']);
+  // }
 }
