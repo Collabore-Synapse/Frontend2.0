@@ -22,6 +22,8 @@
     "@angular/platform-browser": "^16.0.0",
     "@angular/platform-browser-dynamic": "^16.0.0",
     "@angular/router": "^16.0.0",
+    "@asymmetrik/ngx-leaflet": "github:asymmetrik/ngx-leaflet",
+    "@asymmetrik/ngx-leaflet-markercluster": "github:asymmetrik/ngx-leaflet-markercluster",
     "@capacitor/app": "5.0.6",
     "@capacitor/core": "5.5.1",
     "@capacitor/haptics": "5.0.6",
@@ -30,6 +32,7 @@
     "@ionic/angular": "^7.0.0",
     "firebase": "^10.5.2",
     "ionicons": "^7.0.0",
+    "leaflet": "^1.9.4",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"

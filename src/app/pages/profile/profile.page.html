@@ -1,13 +1,21 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>profile</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">profile</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+<div class="container">
+  <div class="topo">
+    <img
+      src="{{ profile ? profile : '../../assets/ProfileAvatar.svg' }}"
+      alt="imagem de perfil"
+    />
+    <h1>{{userName}} <i class="bx bx-pencil"></i></h1>
+  </div>
+  <div class="galery">
+    <h3>Suas colaboraçoes</h3>
+    <div class="imgs">
+      <div
+        *ngFor="let imagePath of imagePaths"
+        (click)="openModal(imagePath)"
+        class="minis"
+      >
+        <img [src]="imagePath" alt="Miniatura da publicação" />
+      </div>
+    </div>
+  </div>
+</div>
