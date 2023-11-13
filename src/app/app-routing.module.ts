@@ -16,16 +16,16 @@ const routes: Routes = [
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
-<<<<<<< HEAD
+
     path: 'register',
     loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
   },
   {
     path: 'collabore',
     loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule)
-  }
+  },
   
-=======
+  {
     path: 'location',
     loadChildren: () => import('./pages/location/location.module').then( m => m.LocationPageModule)
   },
@@ -33,7 +33,6 @@ const routes: Routes = [
     path: 'post-details',
     loadChildren: () => import('./pages/post-details/post-details.module').then( m => m.PostDetailsPageModule)
   },
->>>>>>> b62fd9c127a895fb460cc512243b81dcdc38f979
 ]
 
 @NgModule({
