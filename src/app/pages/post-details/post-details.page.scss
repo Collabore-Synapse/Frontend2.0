@@ -8,6 +8,7 @@
   padding: 0.5rem;
   padding-bottom: 10rem;
   overflow-y: auto;
+  overflow-x: hidden;
 
   background-color: #453d3d;
 
@@ -129,35 +130,40 @@
     width: 100%;
     padding: 0.2rem;
 
-    background-color: #dcdcd4;
+    //background-color: #dcdcd4;
 
     .input-user {
       display: flex;
+      justify-content: flex-start;
 
       img {
         height: 1.625rem;
         width: 1.625rem;
         border-radius: 1rem;
+        margin-right: 0.6rem;
       }
 
       .add {
         display: flex;
         flex-direction: column;
         height: auto;
+        width: 100%;
 
         h3 {
-          font-weight: 500 !important;
+          font-weight: 600 !important;
           margin: 0.2rem;
           font-size: 0.75rem;
           color: #0c0f14;
         }
 
         ion-textarea {
-          --border-width: 0.1rem;
-          --border-style: solid;
-          --border-color: var(--ColorOne);
-          padding: 0;
-          height: 0.875rem;
+          border-width: 0.063rem;
+          border-style: solid;
+          border-color: var(--ColorOne);
+          border-radius: 0.25rem;
+          padding: 0 !important;
+          height: auto;
+          width: 100%;
         }
       }
     }
