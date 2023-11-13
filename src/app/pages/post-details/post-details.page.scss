@@ -18,6 +18,16 @@
     width: 100%;
     margin-bottom: 0.313rem;
 
+    ion-button {
+      --color: #000000;
+      --border-radius: 12px;
+      margin-right: 0.5rem;
+      height: 2.563rem;
+      // width: 2.563rem;
+
+      --border-color: #000000;
+    }
+
     img {
       width: 2.813rem;
       height: 2.813rem;
@@ -106,7 +116,7 @@
 
   h2 {
     font-size: 1rem !important;
-    text-align: center;
+    text-align: start;
     margin: 0.625rem;
     padding: 0;
     width: 100%;
@@ -119,7 +129,7 @@
     width: 100%;
     padding: 0.2rem;
 
-    background-color: #b6bc43;
+    background-color: #dcdcd4;
 
     .input-user {
       display: flex;
@@ -133,17 +143,21 @@
       .add {
         display: flex;
         flex-direction: column;
+        height: auto;
 
-        h3{
-            font-weight: 500 !important;
-            margin: 0.2rem;
-            font-size: 0.75rem;
-            color: #0C0F14
+        h3 {
+          font-weight: 500 !important;
+          margin: 0.2rem;
+          font-size: 0.75rem;
+          color: #0c0f14;
         }
 
         ion-textarea {
-            padding: 0;
-            height: 0.875rem;
+          --border-width: 0.1rem;
+          --border-style: solid;
+          --border-color: var(--ColorOne);
+          padding: 0;
+          height: 0.875rem;
         }
       }
     }
