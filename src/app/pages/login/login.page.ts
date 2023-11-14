@@ -35,11 +35,11 @@ export class LoginPage implements OnInit {
           console.log(res);
           this.authService.saveToken(res.token);
           this.authService.setIsAuthenticated(true);
-          // this.router.navigate(['/feed']);
+          this.router.navigate(['collabore/feed']);
         },
         error: (err) => {
           console.log(err)
-          // this.messageService.add({ severity: 'error', summary: 'Erro', detail: err.error.message || `Ocorreu um erro ao efetuar login.` });
+          //this.messageService.add({ severity: 'error', summary: 'Erro', detail: err.error.message || `Ocorreu um erro ao efetuar login.` });
         }
       })
     }
