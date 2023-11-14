@@ -10,7 +10,7 @@
 
   <h1 class="ion-text-start">Bem vindo de volta!</h1>
 
-  <form [formGroup]="formGroup" class="form">
+  <form [formGroup]="formGroup" class="form" (ngSubmit)="submitLogin()">
 
     <ion-item class="ion-margin-top">
       <ion-input type="email" placeholder="Insira seu e-mail" formControlName="email"></ion-input>

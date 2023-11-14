@@ -3,8 +3,9 @@
     <button class="back">
       <i class="bx bx-chevron-left"></i>
     </button>
-    <img src="../../assets/coreto.png" alt="novo post" />
-  </div>
+    <img *ngIf="!imageUrl" (click)="takePicture()" src="../../assets/coreto.png" alt="novo post" />
+    <img *ngIf="imageUrl" (click)="takePicture()" [src]="imageUrl" alt="novo post" />
+  </div> 
   <div class="inferior">
     <p class="select">Selecione a categoria da publicação:</p>
     <ion-segment

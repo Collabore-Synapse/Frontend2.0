@@ -9,30 +9,6 @@ import * as L from 'leaflet';
 })
 export class LocationPage implements OnInit {
 
-  // map!: L.Map
-
-
-  // constructor() { }
-
-  // ngOnInit() {
-  //     this.map = L.map('map', {
-  //       center: [25.3791924, 55.4765436],
-  //       zoom: 15,
-  //       renderer: L.canvas()
-  //     })
-
-  //   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  //     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-  //   }).addTo(this.map)
-
-  //   setTimeout(() => {
-  //     this.map.invalidateSize();
-  //   }, 0);
-  // }
-
-
-
-
   map!: L.Map;
   customIcon!: L.Icon;
   circle!: L.Circle;
@@ -51,17 +27,16 @@ export class LocationPage implements OnInit {
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(this.map);
 
-      setTimeout(() => {
-        this.map.invalidateSize();
-      }, 0);
+    setTimeout(() => {
+      this.map.invalidateSize();
+    }, 0);
+
 
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const lat = position.coords.latitude;
           const lon = position.coords.longitude;
-
-          console.log(lat, ' ', lon);
 
           this.map.setView([lat, lon], 15);
 
@@ -87,27 +62,42 @@ export class LocationPage implements OnInit {
             icon: this.customIcon,
             draggable: true,
           }).addTo(this.map);
-
-          // Registre o evento de soltar o marcador para atualizar a posição original
-          this.marker.on('dragend', (e) => {
-            e.target._origLatLng = e.target.getLatLng();
-            const newLatLng = e.target.getLatLng();
-            console.log('Lat: ', newLatLng.lat, 'Long:', newLatLng.lng);
-            console.log();
+          this.marker.bindTooltip(`<div style="color:red">distancia maxima atingida</div>`)
+          const movingState = {
+            moving: false,
+            lastLat: 0,
+            lastLng: 0,
+          };
+          this.marker.on('dragstart', () => {
+            movingState.moving = true;
           });
-
-          // Registre o evento de arrastar do marcador
+          this.marker.on('dragend', () => {
+            movingState.moving = false;
+          });
+          // Registre o evento de soltar o marcador para atualizar a posição original
           this.marker.on('drag', (e) => {
-            // Verifique se as novas coordenadas estão dentro do círculo
-            const latlng = e.target.getLatLng();
-            if (this.circle.getBounds().contains(latlng)) {
-              // As novas coordenadas estão dentro do círculo
-              e.target._origLatLng = latlng; // Atualiza a posição original
+            const newLatLng = e.target.getLatLng();
+            const circleCenter = this.circle.getBounds().getCenter();
+            const distance = circleCenter.distanceTo(newLatLng);
+
+            const { lat: mLat, lng: mLng } = this.marker.getLatLng();
+
+            if (distance > this.circle.getRadius()) {
+              this.marker.setLatLng([movingState.lastLat, movingState.lastLng]);
+              this.marker.openTooltip()
+              
             } else {
-              // As novas coordenadas estão fora do círculo, então reverta para a posição anterior
-              e.target.setLatLng(e.target._origLatLng);
+              movingState.lastLat = mLat;
+              movingState.lastLng = mLng;
+              this.marker.closeTooltip();
             }
           });
+
+          this.circle.on('click', ({latlng}) => {
+            this.marker.setLatLng(latlng);
+          });
+
+
         },
         (error) => {
           console.error('Erro ao obter a localização:', error);

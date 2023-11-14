@@ -5,7 +5,7 @@ const config: CapacitorConfig = {
   appName: 'Frontend2.0',
   webDir: 'www',
   server: {
-    androidScheme: 'https'
+    androidScheme: 'http'
   }
 };
 
