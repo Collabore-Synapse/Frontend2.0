@@ -11,21 +11,19 @@ const KEY = 'token';
 const API = environment.API;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
   user: any;
   error: any;
   userInfo?: GoogleInfos;
 
-  private isAuthenticatedSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  public isAuthenticated$: Observable<boolean> = this.isAuthenticatedSubject.asObservable();
+  private isAuthenticatedSubject: BehaviorSubject<boolean> =
+    new BehaviorSubject<boolean>(false);
+  public isAuthenticated$: Observable<boolean> =
+    this.isAuthenticatedSubject.asObservable();
 
-  constructor(
-    private http: HttpClient,
-    public auth: AngularFireAuth
-  ) { 
+  constructor(private http: HttpClient, public auth: AngularFireAuth) {
     this.setIsAuthenticated(!!this.returnToken());
   }
 
@@ -37,7 +35,7 @@ export class AuthService {
     return this.isAuthenticatedSubject.value;
   }
 
-  returnToken(){
+  returnToken() {
     return localStorage.getItem(KEY) || '';
   }
 
@@ -47,9 +45,9 @@ export class AuthService {
     this.setIsAuthenticated(true);
   }
 
-  deleteToken(){
-      localStorage.removeItem(KEY);
-      this.setIsAuthenticated(false);
+  deleteToken() {
+    localStorage.removeItem(KEY);
+    this.setIsAuthenticated(false);
   }
 
   haveToken() {
@@ -57,11 +55,11 @@ export class AuthService {
     return hasToken;
   }
 
-  login(login: Login): Observable<{token: string}> {
-    return this.http.post<{token: string}>(`${API}/user/login`, login);
+  login(login: Login): Observable<{ token: string }> {
+    return this.http.post<{ token: string }>(`${API}/user/login`, login);
   }
 
-  async googleSignIn() {
+  async googleLogin() {
     try {
       const provider = new firebase.auth.GoogleAuthProvider();
       const credential = await this.auth.signInWithPopup(provider);
@@ -70,16 +68,16 @@ export class AuthService {
         name: credential.user?.displayName as string,
         email: credential.user?.email as string,
         google_id: credential.user?.uid as string,
-        photo_url: credential.user?.photoURL as string
-      }
+        photo_url: credential.user?.photoURL as string,
+      };
       this.loginWithGoogle(this.userInfo).subscribe({
         next: (auth) => {
-          console.info('Login efetuado com sucesso! ', auth)
+          console.info('Login efetuado com sucesso! ', auth);
         },
         error: (erro) => {
-          console.error('Erro => ', erro)
-        }
-      })
+          console.error('Erro => ', erro);
+        },
+      });
       console.log('Usuário logado com sucesso! ', this.userInfo);
     } catch (error) {
       this.error = error;
@@ -87,6 +85,31 @@ export class AuthService {
     }
   }
 
+  async googleRegister() {
+    try {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      const credential = await this.auth.signInWithPopup(provider);
+      this.user = credential.user;
+      this.userInfo = {
+        name: credential.user?.displayName as string,
+        email: credential.user?.email as string,
+        google_id: credential.user?.uid as string,
+        photo_url: credential.user?.photoURL as string,
+      };
+      this.registerWithGoogle(this.userInfo).subscribe({
+        next: (auth) => {
+          console.info('Cadastro efetuado com sucesso! ', auth);
+        },
+        error: (erro) => {
+          console.error('Erro => ', erro);
+        },
+      });
+      console.log('Usuário cadastrado com sucesso! ', this.userInfo);
+    } catch (error) {
+      this.error = error;
+      console.error('Erro => ', error);
+    }
+  }
 
   //excluir todos os dados armazenados no localStorage
   async signOut() {
@@ -95,6 +118,10 @@ export class AuthService {
   }
 
   loginWithGoogle(infos: GoogleInfos): Observable<GoogleInfos> {
+    return this.http.post<GoogleInfos>(`${API}/user/loginWithGoogle`, infos);
+  }
+
+  registerWithGoogle(infos: GoogleInfos): Observable<GoogleInfos> {
     return this.http.post<GoogleInfos>(`${API}/user/registerWithGoogle`, infos);
   }
 
