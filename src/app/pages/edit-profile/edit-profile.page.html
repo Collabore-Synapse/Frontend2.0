@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="topo">
+    <div class="esquerda">
+      <button class="back" routerLink="/collabore/profile">
+        <i class="bx bx-chevron-left"></i>
+      </button>
+    </div>
+    <div class="centro-picture">
+      <img
+        src="{{ profile ? profile : '../../assets/ProfileAvatar.svg' }}"
+        alt="imagem de perfil"
+      />
+      <h1>
+        Editar Foto
+        <a routerLink="/edit-profile"><i class="bx bx-pencil"></i></a>
+      </h1>
+    </div>
+  </div>
+  <div class="edicoes">
+    <ion-item>
+      <ion-input type="password" placeholder="Nome"></ion-input>
+    </ion-item>
+  </div>
+</div>

@@ -31,8 +31,9 @@ export class LoginPage implements OnInit {
     if (this.formGroup.valid && this.formGroup.value) {
       const formValues = this.formGroup.value;
       this.authService.login(formValues).subscribe({
-        next: (res) => {
+        next: (res: any) => {
           console.log(res);
+          localStorage.setItem("userId", res.user.id);
           this.authService.saveToken(res.token);
           this.authService.setIsAuthenticated(true);
           this.router.navigate(['collabore/feed']);

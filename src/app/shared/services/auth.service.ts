@@ -43,6 +43,7 @@ export class AuthService {
 
   saveToken(token: string) {
     localStorage.setItem(KEY, token);
+    console.log(KEY, token);
     this.setIsAuthenticated(true);
   }
 
@@ -67,7 +68,7 @@ export class AuthService {
       this.user = credential.user;
       this.userInfo = {
         name: credential.user?.displayName as string,
-        email: credential.user?.displayName as string,
+        email: credential.user?.email as string,
         google_id: credential.user?.uid as string,
         photo_url: credential.user?.photoURL as string
       }
@@ -86,6 +87,8 @@ export class AuthService {
     }
   }
 
+
+  //excluir todos os dados armazenados no localStorage
   async signOut() {
     await this.auth.signOut();
     this.user = null;
@@ -98,4 +101,12 @@ export class AuthService {
   createAccount(values: CreateAccount): Observable<CreateAccount> {
     return this.http.post<CreateAccount>(`${API}/user/register`, values);
   }
+
+  findUser(userId: number): Observable<any> {
+    return this.http.get<any>(`${API}/user/find/${userId}`);
+  }
+
+  // postUser(userId: number): Observable<any> {
+  //   return this.http.get<any>(`${API}/user/find/post/${userId}`);
+  // }
 }

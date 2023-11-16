@@ -7,14 +7,12 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
+  constructor(public authService: AuthService) {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   profile: String = '';
-  userName: String = 'UserAPI';
+  userName: String = '';
 
   imagePaths: string[] = [
     '../../../assets/coreto.png',
@@ -32,17 +30,6 @@ export class ProfilePage implements OnInit {
     '../../../assets/paisagem2.jpg',
     '../../../assets/paisagem3.jpg',
     '../../../assets/paisagem1.jpg',
-    '../../../assets/paisagem3.jpg',
-    '../../../assets/paisagem1.jpg',
-    '../../../assets/paisagem2.jpg',
-    '../../../assets/paisagem3.jpg',
-    '../../../assets/paisagem4.jpeg',
-    '../../../assets/coreto.png',
-    '../../../assets/paisagem1.jpg',
-    '../../../assets/paisagem2.jpg',
-    '../../../assets/paisagem3.jpg',
-    '../../../assets/paisagem1.jpg',
-    '../../../assets/paisagem3.jpg',
     '../../../assets/paisagem1.jpg',
     '../../../assets/paisagem2.jpg',
     '../../../assets/paisagem3.jpg',
@@ -55,4 +42,12 @@ export class ProfilePage implements OnInit {
     // Você pode usar bibliotecas de modais como o ng-bootstrap ou criar um modal personalizado.
   }
 
+  ionViewWillEnter() {
+    this.authService
+      .findUser(Number(localStorage.getItem('userId')))
+      .subscribe((user) => {
+        console.log('Usuario: ', user, /*'Nome : ', user.name*/), (this.userName = user.name);
+      });
+  }
+  
 }
