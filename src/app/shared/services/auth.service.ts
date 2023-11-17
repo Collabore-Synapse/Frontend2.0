@@ -77,7 +77,6 @@ export class AuthService {
           console.error('Erro => ', erro);
         },
       });
-      console.log('Usuário logado com sucesso! ', this.userInfo);
     } catch (error) {
       this.error = error;
       console.error('Erro => ', error);
@@ -102,7 +101,6 @@ export class AuthService {
           console.error('Erro => ', erro);
         },
       });
-      console.log('Usuário cadastrado com sucesso! ', this.userInfo);
     } catch (error) {
       this.error = error;
       console.error('Erro => ', error);
