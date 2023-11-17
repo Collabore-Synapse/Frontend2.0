@@ -23,7 +23,7 @@
       <ion-note class="ion-text-center" slot="end" color="danger" *ngIf="formGroup.get('password')?.dirty && formGroup.get('password')?.hasError('required')">Obrigatório</ion-note>
     </ion-item>
 
-    <p class="forget ion-margin-top">Esqueceu a senha?</p>
+    <a routerLink="/password-forget">Esqueci minha senha</a>
 
     <ion-button type="submit" expand="block" class="ion-margin-top">
       Login
