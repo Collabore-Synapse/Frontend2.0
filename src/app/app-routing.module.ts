@@ -36,6 +36,14 @@ const routes: Routes = [
     path: 'edit-profile',
     loadChildren: () => import('./pages/edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
   },
+  {
+    path: 'password-edit',
+    loadChildren: () => import('./pages/password-edit/password-edit.module').then( m => m.PasswordEditPageModule)
+  },
+  {
+    path: 'password-forget',
+    loadChildren: () => import('./pages/password-forget/password-forget.module').then( m => m.PasswordForgetPageModule)
+  },
 
 ]
 

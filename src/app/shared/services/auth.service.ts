@@ -68,7 +68,6 @@ export class AuthService {
         name: credential.user?.displayName as string,
         email: credential.user?.email as string,
         google_id: credential.user?.uid as string,
-        photo_url: credential.user?.photoURL as string,
       };
       this.loginWithGoogle(this.userInfo).subscribe({
         next: (auth) => {
@@ -94,7 +93,6 @@ export class AuthService {
         name: credential.user?.displayName as string,
         email: credential.user?.email as string,
         google_id: credential.user?.uid as string,
-        photo_url: credential.user?.photoURL as string,
       };
       this.registerWithGoogle(this.userInfo).subscribe({
         next: (auth) => {

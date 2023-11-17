@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-feed',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./feed.page.scss'],
 })
 export class FeedPage implements OnInit {
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {}
 
@@ -82,4 +83,12 @@ export class FeedPage implements OnInit {
   comentary: string = //"";
     'Não é por nada não mas deve ter acontecido alguma coisa aí ohplaceat quia nam modi assumenda hic totam tenetur cum molestiae corporis vel inventore reprehenderit. Qui enim porro ut praesentium sapiente nam obcaecati incidunt eos repellat sint quo odio quae vel cupiditate aliquid.';
   limitCard: number = 85;
+
+  fazerLogout() {
+    // Limpe o localStorage
+    localStorage.clear();
+
+    // Navegue para a página de login ou qualquer outra página desejada
+    this.router.navigate(['/']); // Substitua '/login' pelo caminho da sua página de login
+  }
 }
