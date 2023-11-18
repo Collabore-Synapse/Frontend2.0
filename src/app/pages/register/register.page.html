@@ -15,7 +15,6 @@
     <ion-item class="ion-margin-top">
       <ion-input type="text" placeholder="Nome" formControlName="name"></ion-input>
       <ion-note class="ion-text-center" slot="end" color="danger" *ngIf="formGroup.get('name')?.dirty && formGroup.get('name')?.hasError('required')">Obrigatório</ion-note>
-      <!-- <ion-note class="ion-text-center" slot="end" color="danger" *ngIf="formGroup.get('name')?.dirty && formGroup.get('name')?.hasError('email')">E-mail inválido</ion-note> -->
     </ion-item>
 
     <ion-item class="ion-margin-top">
