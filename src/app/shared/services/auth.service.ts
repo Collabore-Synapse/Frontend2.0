@@ -77,6 +77,7 @@ export class AuthService {
           console.error('Erro => ', erro);
         },
       });
+      console.log('Usuário logado com sucesso! ', this.userInfo);
     } catch (error) {
       this.error = error;
       console.error('Erro => ', error);
@@ -101,6 +102,7 @@ export class AuthService {
           console.error('Erro => ', erro);
         },
       });
+      console.log('Usuário cadastrado com sucesso! ', this.userInfo);
     } catch (error) {
       this.error = error;
       console.error('Erro => ', error);
@@ -129,13 +131,8 @@ export class AuthService {
     return this.http.get<any>(`${API}/user/find/${userId}`);
   }
 
-  verifyToken(
-    values: VerifyToken,
-    authentication: string
-  ): Observable<{ message: string }> {
-    return this.http.post<{ message: string }>(
-      `${API}/user/verifyEmail`,
-      values,
+  verifyToken(values: VerifyToken, authentication: string): Observable<{ message: string }> {
+    return this.http.post<{ message: string }>(`${API}/user/verifyEmail`, values,
       { headers: { Authorization: 'Bearer' + authentication } }
     );
   }
