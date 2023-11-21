@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { CreateAccount, GoogleInfos, Login, VerifyToken } from '../models/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
+import { Storage } from '@ionic/storage-angular';
 
 const KEY = 'token';
 const API = environment.API;
@@ -18,13 +19,15 @@ export class AuthService {
   error: any;
   userInfo?: GoogleInfos;
 
-  private isAuthenticatedSubject: BehaviorSubject<boolean> =
-    new BehaviorSubject<boolean>(false);
-  public isAuthenticated$: Observable<boolean> =
-    this.isAuthenticatedSubject.asObservable();
+  private isAuthenticatedSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public isAuthenticated$: Observable<boolean> = this.isAuthenticatedSubject.asObservable();
 
-  constructor(private http: HttpClient, public auth: AngularFireAuth) {
-    this.setIsAuthenticated(!!this.returnToken());
+  constructor(
+    private http: HttpClient, 
+    public auth: AngularFireAuth,
+    private storage: Storage
+  ) {
+    this.setIsAuthenticated(!!this.getToken());
   }
 
   public setIsAuthenticated(value: boolean): void {
@@ -35,23 +38,22 @@ export class AuthService {
     return this.isAuthenticatedSubject.value;
   }
 
-  returnToken() {
-    return localStorage.getItem(KEY) || '';
+  getToken(): Promise<string | null> {
+    return this.storage.get('token');
   }
 
-  saveToken(token: string) {
-    localStorage.setItem(KEY, token);
-    console.log(KEY, token);
+  saveToken(token: string): Promise<any> {
     this.setIsAuthenticated(true);
+    return this.storage.set('token', token);
   }
 
-  deleteToken() {
-    localStorage.removeItem(KEY);
+  deleteToken(): Promise<any> {
     this.setIsAuthenticated(false);
+    return this.storage.remove('token');
   }
 
   haveToken() {
-    const hasToken = !!this.returnToken();
+    const hasToken = !!this.getToken();
     return hasToken;
   }
 
