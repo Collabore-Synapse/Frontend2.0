@@ -27,7 +27,12 @@ export class AuthService {
     public auth: AngularFireAuth,
     private storage: Storage
   ) {
+    this.init();
     this.setIsAuthenticated(!!this.getToken());
+  }
+
+  async init() {
+    await this.storage.create();
   }
 
   public setIsAuthenticated(value: boolean): void {
@@ -133,11 +138,15 @@ export class AuthService {
     return this.http.get<any>(`${API}/user/find/${userId}`);
   }
 
-  verifyToken(values: VerifyToken, authentication: string): Observable<{ message: string }> {
-    return this.http.post<{ message: string }>(`${API}/user/verifyEmail`, values,
-      { headers: { Authorization: 'Bearer' + authentication } }
-    );
-  }
+  // verifyToken(values: VerifyToken, authentication: string): Observable<{ message: string }> {
+  //   return this.http.post<{ message: string }>(`${API}/user/verifyEmail`, values,
+  //     { headers: { Authorization: 'Bearer' + authentication } }
+  //   );
+  // }
+
+  verifyToken(token: Promise<string | null>): Observable<string | null> {
+    return this.http.post<string | null>(`${API}/user/verifyEmail`, token);
+  } 
 
   // postUser(userId: number): Observable<any> {
   //   return this.http.get<any>(`${API}/user/find/post/${userId}`);

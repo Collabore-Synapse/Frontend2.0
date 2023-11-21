@@ -11,13 +11,24 @@ export class TokenVericationPage implements OnInit {
 
   constructor(private authService: AuthService) { }
 
-  token: string = "";
+  token!: Promise<string | null>;
 
   ngOnInit() {
   }
 
-  tokenVerification(){
-    this.authService.verifyToken({tokenCode: this.token}, this.authService.returnToken());
-  };
+  verifyToken() {
+    this.authService.verifyToken(this.token).subscribe({
+      next: (auth) => {
+        console.log('Verificação concluída com sucesso! ', auth)
+      },
+      error: (erro) => {
+        console.error("Erro =>", erro);
+      }
+    })
+  }
+
+  // tokenVerification(){
+  //   this.authService.verifyToken({tokenCode: this.token}, this.authService.getToken());
+  // };
 
 }
