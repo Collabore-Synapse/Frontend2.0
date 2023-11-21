@@ -51,6 +51,8 @@ export class RegisterPage implements OnInit {
       this.authService.createAccount(values).subscribe({
         next: (res) => {
           console.log('Conta criada! ', res);
+          this.router.navigate(['token-verification']);
+          this.authService.saveToken((res as any).token);
         },
         error: (err) => {
           console.error('Erro => ', err);

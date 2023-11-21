@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { CreateAccount, GoogleInfos, Login } from '../models/auth';
+import { CreateAccount, GoogleInfos, Login, VerifyToken } from '../models/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
 
@@ -127,6 +127,17 @@ export class AuthService {
 
   findUser(userId: number): Observable<any> {
     return this.http.get<any>(`${API}/user/find/${userId}`);
+  }
+
+  verifyToken(
+    values: VerifyToken,
+    authentication: string
+  ): Observable<{ message: string }> {
+    return this.http.post<{ message: string }>(
+      `${API}/user/verifyEmail`,
+      values,
+      { headers: { Authorization: 'Bearer' + authentication } }
+    );
   }
 
   // postUser(userId: number): Observable<any> {

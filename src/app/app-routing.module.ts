@@ -32,7 +32,8 @@ const routes: Routes = [
   {
     path: 'post-details',
     loadChildren: () => import('./pages/post-details/post-details.module').then( m => m.PostDetailsPageModule)
-  },  {
+  },
+  {
     path: 'edit-profile',
     loadChildren: () => import('./pages/edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
   },
@@ -43,6 +44,10 @@ const routes: Routes = [
   {
     path: 'password-forget',
     loadChildren: () => import('./pages/password-forget/password-forget.module').then( m => m.PasswordForgetPageModule)
+  },
+  {
+    path: 'token-verification',
+    loadChildren: () => import('./pages/token-verication/token-verication.module').then( m => m.TokenVericationPageModule)
   },
 
 ]
