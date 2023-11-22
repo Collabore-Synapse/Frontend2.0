@@ -129,6 +129,10 @@ export class AuthService {
     return this.http.get<any>(`${API}/user/find/${userId}`);
   }
 
+  findLoggedUser(): Observable<any> {
+    return this.http.get<any>(`${API}/user/me`);
+  }
+
   verifyToken(
     values: VerifyToken,
     authentication: string

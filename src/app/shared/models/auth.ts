@@ -29,3 +29,15 @@ export interface UserPosts {
 export interface VerifyToken {
   tokenCode: String;
 }
+
+export interface User {
+  id: number
+  google_id: any
+  name: string
+  email: string
+  password: string
+  pfp: any
+  role: string
+  auth_method: string
+  created_at: string
+}

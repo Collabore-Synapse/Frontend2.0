@@ -48,7 +48,11 @@ const routes: Routes = [
   {
     path: 'token-verification',
     loadChildren: () => import('./pages/token-verication/token-verication.module').then( m => m.TokenVericationPageModule)
+  },  {
+    path: 'profile-picture',
+    loadChildren: () => import('./pages/profile-picture/profile-picture.module').then( m => m.ProfilePicturePageModule)
   },
+
 
 ]
 

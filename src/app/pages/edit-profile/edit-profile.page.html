@@ -11,23 +11,30 @@
         />
         <h1>
           Editar Foto
-          <a routerLink="/edit-profile"><i class="bx bx-pencil"></i></a>
+          <a (click)="openImageUploadModal()"><i class="bx bx-pencil"></i></a>
         </h1>
       </div>
     </div>
   </div>
-  <div class="inputs">
-    <h3>Insira o nome de perfil desejado</h3>
-    <div class="edicoes">
-      <!-- <ion-item fill="outline"> -->
-      <ion-input end type="text" placeholder="Nome"></ion-input>
-      <!-- </ion-item> -->
+  <form (ngSubmit)="save()" [formGroup]="userForm">
+    <div class="inputs">
+      <h3>Insira o nome de perfil desejado</h3>
+      <div class="edicoes">
+        <!-- <ion-item fill="outline"> -->
+        <ion-input
+          formControlName="name"
+          end
+          type="text"
+          placeholder="Nome"
+        ></ion-input>
+        <!-- </ion-item> -->
+      </div>
     </div>
-  </div>
-  <div class="inferior">
-    <a routerLink="/password-edit">Alterar senha</a>
-    <ion-button type="submit" expand="block" class="ion-margin-top">
-      Confirmar alterações
-    </ion-button>
-  </div>
+    <div class="inferior">
+      <a routerLink="/password-edit">Alterar senha</a>
+      <ion-button type="submit" expand="block" class="ion-margin-top">
+        Confirmar alterações
+      </ion-button>
+    </div>
+  </form>
 </div>

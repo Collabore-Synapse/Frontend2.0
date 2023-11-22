@@ -43,8 +43,7 @@ export class ProfilePage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.authService
-      .findUser(Number(localStorage.getItem('userId')))
+    this.authService.findLoggedUser()
       .subscribe((user) => {
         console.log('Usuario: ', user, /*'Nome : ', user.name*/), (this.userName = user.name);
       });
