@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { CreateAccount, GoogleInfos, Login, VerifyToken } from '../models/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
+import { Storage } from '@ionic/storage-angular';
 
 const KEY = 'token';
 const API = environment.API;
@@ -18,13 +19,20 @@ export class AuthService {
   error: any;
   userInfo?: GoogleInfos;
 
-  private isAuthenticatedSubject: BehaviorSubject<boolean> =
-    new BehaviorSubject<boolean>(false);
-  public isAuthenticated$: Observable<boolean> =
-    this.isAuthenticatedSubject.asObservable();
+  private isAuthenticatedSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public isAuthenticated$: Observable<boolean> = this.isAuthenticatedSubject.asObservable();
 
-  constructor(private http: HttpClient, public auth: AngularFireAuth) {
-    this.setIsAuthenticated(!!this.returnToken());
+  constructor(
+    private http: HttpClient, 
+    public auth: AngularFireAuth,
+    private storage: Storage
+  ) {
+    this.init();
+    this.setIsAuthenticated(!!this.getToken());
+  }
+
+  async init() {
+    await this.storage.create();
   }
 
   public setIsAuthenticated(value: boolean): void {
@@ -35,23 +43,22 @@ export class AuthService {
     return this.isAuthenticatedSubject.value;
   }
 
-  returnToken() {
-    return localStorage.getItem(KEY) || '';
+  getToken(): Promise<string | null> {
+    return this.storage.get('token');
   }
 
-  saveToken(token: string) {
-    localStorage.setItem(KEY, token);
-    console.log(KEY, token);
+  saveToken(token: string): Promise<any> {
     this.setIsAuthenticated(true);
+    return this.storage.set('token', token);
   }
 
-  deleteToken() {
-    localStorage.removeItem(KEY);
+  deleteToken(): Promise<any> {
     this.setIsAuthenticated(false);
+    return this.storage.remove('token');
   }
 
   haveToken() {
-    const hasToken = !!this.returnToken();
+    const hasToken = !!this.getToken();
     return hasToken;
   }
 
@@ -77,6 +84,7 @@ export class AuthService {
           console.error('Erro => ', erro);
         },
       });
+      console.log('Usuário logado com sucesso! ', this.userInfo);
     } catch (error) {
       this.error = error;
       console.error('Erro => ', error);
@@ -101,6 +109,7 @@ export class AuthService {
           console.error('Erro => ', erro);
         },
       });
+      console.log('Usuário cadastrado com sucesso! ', this.userInfo);
     } catch (error) {
       this.error = error;
       console.error('Erro => ', error);
@@ -129,20 +138,15 @@ export class AuthService {
     return this.http.get<any>(`${API}/user/find/${userId}`);
   }
 
-  findLoggedUser(): Observable<any> {
-    return this.http.get<any>(`${API}/user/me`);
-  }
+  // verifyToken(values: VerifyToken, authentication: string): Observable<{ message: string }> {
+  //   return this.http.post<{ message: string }>(`${API}/user/verifyEmail`, values,
+  //     { headers: { Authorization: 'Bearer' + authentication } }
+  //   );
+  // }
 
-  verifyToken(
-    values: VerifyToken,
-    authentication: string
-  ): Observable<{ message: string }> {
-    return this.http.post<{ message: string }>(
-      `${API}/user/verifyEmail`,
-      values,
-      { headers: { Authorization: 'Bearer' + authentication } }
-    );
-  }
+  verifyToken(token: Promise<string | null>): Observable<string | null> {
+    return this.http.post<string | null>(`${API}/user/verifyEmail`, token);
+  } 
 
   // postUser(userId: number): Observable<any> {
   //   return this.http.get<any>(`${API}/user/find/post/${userId}`);
