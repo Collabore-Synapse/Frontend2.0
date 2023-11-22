@@ -68,6 +68,12 @@
     }
   }
 
+  form{
+    display: flex;
+    flex-direction: column;
+    
+    width: 100%;
+  }
   .inputs {
     display: flex;
     flex-direction: column;

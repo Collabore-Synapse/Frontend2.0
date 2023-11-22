@@ -1,5 +1,7 @@
+import { ModalController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { ProfilePicturePage } from '../profile-picture/profile-picture.page';
 
 @Component({
   selector: 'app-profile',
@@ -7,7 +9,10 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-  constructor(public authService: AuthService) {}
+  constructor(
+    public authService: AuthService,
+    private modalCtrl: ModalController
+  ) {}
 
   ngOnInit() {}
 
@@ -37,16 +42,18 @@ export class ProfilePage implements OnInit {
     // para chmar a API
   ];
 
-  openModal(imagePath: string) {
-    // Implemente a lógica para abrir um modal com a imagem em imagePath
-    // Você pode usar bibliotecas de modais como o ng-bootstrap ou criar um modal personalizado.
+  async openModal() {
+    const modal = await this.modalCtrl.create({
+      component: ProfilePicturePage,
+      //  cssClass, componentProps, etc.
+    });
+    await modal.present();
   }
 
   ionViewWillEnter() {
-    this.authService.findLoggedUser()
-      .subscribe((user) => {
-        console.log('Usuario: ', user, /*'Nome : ', user.name*/), (this.userName = user.name);
-      });
+    this.authService.findLoggedUser().subscribe((user) => {
+      console.log('Usuario: ', user /*'Nome : ', user.name*/),
+        (this.userName = user.name);
+    });
   }
-  
 }

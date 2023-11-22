@@ -47,6 +47,10 @@ export class AuthService {
     return this.storage.get('token');
   }
 
+  returnToken() {
+    return localStorage.getItem(KEY) || '';
+  }
+
   saveToken(token: string): Promise<any> {
     this.setIsAuthenticated(true);
     return this.storage.set('token', token);
@@ -136,6 +140,10 @@ export class AuthService {
 
   findUser(userId: number): Observable<any> {
     return this.http.get<any>(`${API}/user/find/${userId}`);
+  }
+
+  findLoggedUser(): Observable<any> {
+    return this.http.get<any>(`${API}/user/me`);
   }
 
   // verifyToken(values: VerifyToken, authentication: string): Observable<{ message: string }> {
