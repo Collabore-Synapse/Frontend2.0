@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as L from 'leaflet';
+import { Geolocation, Position } from '@capacitor/geolocation';
 
 @Component({
   selector: 'app-location',
@@ -8,9 +9,8 @@ import * as L from 'leaflet';
   styleUrls: ['./location.page.scss'],
 })
 export class LocationPage implements OnInit {
-
   map!: L.Map;
-  customIcon!: L.Icon;
+  customIcon!: L.Icon;  
   circle!: L.Circle;
   marker!: L.Marker;
   constructor(private router: Router) {}
@@ -31,10 +31,9 @@ export class LocationPage implements OnInit {
       this.map.invalidateSize();
     }, 0);
 
-
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
+    if ('geolocation' /*in navigator*/) {
+      /*navigator.*/Geolocation.getCurrentPosition().then(
+        (position: Position) => {
           const lat = position.coords.latitude;
           const lon = position.coords.longitude;
 
@@ -55,14 +54,16 @@ export class LocationPage implements OnInit {
             color: '#4E4B59',
             fillColor: '#8391A1',
             fillOpacity: 0.3,
-            radius: 1000,
+            radius: 100,
           }).addTo(this.map);
 
           this.marker = L.marker([lat, lon], {
             icon: this.customIcon,
             draggable: true,
           }).addTo(this.map);
-          this.marker.bindTooltip(`<div style="color:red">distancia maxima atingida</div>`)
+          this.marker.bindTooltip(
+            `<div style="color:red">distancia maxima atingida</div>`
+          );
           const movingState = {
             moving: false,
             lastLat: 0,
@@ -82,10 +83,11 @@ export class LocationPage implements OnInit {
 
             const { lat: mLat, lng: mLng } = this.marker.getLatLng();
 
+            console.log('Nova posição do marcador:', newLatLng);
+
             if (distance > this.circle.getRadius()) {
               this.marker.setLatLng([movingState.lastLat, movingState.lastLng]);
-              this.marker.openTooltip()
-              
+              this.marker.openTooltip();
             } else {
               movingState.lastLat = mLat;
               movingState.lastLng = mLng;
@@ -93,11 +95,9 @@ export class LocationPage implements OnInit {
             }
           });
 
-          this.circle.on('click', ({latlng}) => {
+          this.circle.on('click', ({ latlng }) => {
             this.marker.setLatLng(latlng);
           });
-
-
         },
         (error) => {
           console.error('Erro ao obter a localização:', error);
@@ -106,9 +106,10 @@ export class LocationPage implements OnInit {
     } else {
       console.error('Geolocalização não suportada pelo navegador.');
     }
-  }
+  }  
+}
 
-  // voltarHome(): void {
+
+// voltarHome(): void {
   //   this.router.navigate(['/tabs/new-post']);
   // }
-}

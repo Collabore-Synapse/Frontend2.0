@@ -1,7 +1,5 @@
-import { ModalController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { ProfilePicturePage } from '../profile-picture/profile-picture.page';
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +9,6 @@ import { ProfilePicturePage } from '../profile-picture/profile-picture.page';
 export class ProfilePage implements OnInit {
   constructor(
     public authService: AuthService,
-    private modalCtrl: ModalController
   ) {}
 
   ngOnInit() {}
@@ -42,18 +39,11 @@ export class ProfilePage implements OnInit {
     // para chmar a API
   ];
 
-  async openModal() {
-    const modal = await this.modalCtrl.create({
-      component: ProfilePicturePage,
-      //  cssClass, componentProps, etc.
-    });
-    await modal.present();
-  }
 
-  ionViewWillEnter() {
-    this.authService.findLoggedUser().subscribe((user) => {
-      console.log('Usuario: ', user /*'Nome : ', user.name*/),
-        (this.userName = user.name);
-    });
-  }
+  // ionViewWillEnter() {
+  //   this.authService.findLoggedUser().subscribe((user) => {
+  //     console.log('Usuario: ', user /*'Nome : ', user.name*/),
+  //       (this.userName = user.name);
+  //   });
+  // }
 }

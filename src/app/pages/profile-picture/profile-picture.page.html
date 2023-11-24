@@ -1,16 +1,13 @@
-<ion-modal #modal trigger="open-modal" >
-  <ng-template>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Modal</ion-title>
-        <ion-buttons slot="end">
-          <ion-button (click)="dismiss()">Close</ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content style="height: 33vh;">
-      <!-- Conteúdo do modal aqui -->
-    </ion-content>
-  </ng-template>
-</ion-modal>
+<ion-card >
+  <ion-card-content>
+    <image-cropper
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="4 / 3"
+    format="png"
+></image-cropper>
+  </ion-card-content>
+</ion-card>
 
+
+<!-- (imageCropped)="suaFuncaoDeManipulacao($event)" -->

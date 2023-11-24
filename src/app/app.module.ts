@@ -13,6 +13,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AuthInterceptor } from './auth.interceptor';
 import { IonicStorageModule } from '@ionic/storage-angular';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { IonicStorageModule } from '@ionic/storage-angular';
     AngularFireAuthModule,
     HttpClientModule,
     FormsModule,
+    ImageCropperModule
   ],
   providers: [
     { 

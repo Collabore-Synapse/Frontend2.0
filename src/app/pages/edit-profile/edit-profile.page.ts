@@ -16,7 +16,7 @@ export class EditProfilePage{
   public userForm = new FormGroup({
     name:new FormControl(``,[Validators.required])
   })
-  constructor(private modalController: ModalController,public authService: AuthService,private http: HttpClient) { }
+  constructor(private modalCtrl: ModalController,public authService: AuthService,private http: HttpClient) { }
 
   ionViewWillEnter() {
     this.authService.findLoggedUser()
@@ -30,14 +30,14 @@ export class EditProfilePage{
   profile: string = '';
   userName: string = 'UserAPI';
 
-  async openImageUploadModal() {
-    const modal = await this.modalController.create({
+  async openModal() {
+    const modal = await this.modalCtrl.create({
       component: ProfilePicturePage,
-      /*cssClass: ,*/
+      cssClass: "modal-picture",
     });
-  
-    return await modal.present();
-  }  
+    console.log("aberto ");
+    await modal.present();
+  }
 
   async save(){
     const {name} =this.userForm.value

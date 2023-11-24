@@ -21,7 +21,7 @@ export class NewPostPage implements OnInit {
   takePicture = async () => {
     const image = await Camera.getPhoto({
       quality: 100,
-      allowEditing: true,
+      allowEditing: false,
       resultType: CameraResultType.Base64,
     });
 

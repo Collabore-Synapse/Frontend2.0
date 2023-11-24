@@ -40,13 +40,30 @@
 }
 
 :root {
-  --ColorOne: #1E232C;
-  --ColorTwo: #35C2C1;
-  --ColorThree: #F7F8F9;
-  --ColorFour: #8391A1;
-  --ColorFive: #E8ECF4;
+  --ColorOne: #1e232c;
+  --ColorTwo: #35c2c1;
+  --ColorThree: #f7f8f9;
+  --ColorFour: #8391a1;
+  --ColorFive: #e8ecf4;
 }
 
 ::-webkit-scrollbar {
-  display: none; 
+  display: none;
+}
+
+ion-modal {
+  &.modal-picture {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    --height: 40vh;
+    --width: 100%;
+    --border-radius: 1rem;
+    ion-card {
+      height: 100%;
+
+      --background: #fff;
+    }
+  }
 }
