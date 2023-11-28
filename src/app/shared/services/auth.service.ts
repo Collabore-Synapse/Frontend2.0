@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, from } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { CreateAccount, GoogleInfos, Login, VerifyToken } from '../models/auth';
@@ -43,22 +43,19 @@ export class AuthService {
     return this.isAuthenticatedSubject.value;
   }
 
-  getToken(): Promise<string | null> {
-    return this.storage.get('token');
+
+  getToken(): Observable<string> {
+    return from(this.storage.get('token') || '');
   }
 
-  returnToken() {
-    return localStorage.getItem(KEY) || '';
-  }
-
-  saveToken(token: string): Promise<any> {
+  saveToken(token: string): Observable<any> {
     this.setIsAuthenticated(true);
-    return this.storage.set('token', token);
+    return from(this.storage.set('token', token));
   }
 
-  deleteToken(): Promise<any> {
+  deleteToken(): Observable<any> {
     this.setIsAuthenticated(false);
-    return this.storage.remove('token');
+    return from(this.storage.remove('token'));
   }
 
   haveToken() {
