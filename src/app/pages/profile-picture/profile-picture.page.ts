@@ -1,7 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
+import { ImageUploadService } from './../../shared/image-upload/image-upload.service';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Capacitor } from '@capacitor/core'; 
+import { LoadingController, ModalController } from '@ionic/angular';
+import { ImageCroppedEvent, ImageCropperComponent, ImageTransform, } from 'ngx-image-cropper';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Camera, CameraResultType } from '@capacitor/camera';
+import 'hammerjs';
+import { HttpClient, HttpEvent, HttpEventType, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { last, map, tap } from 'rxjs';
 
 @Component({
   selector: 'app-profile-picture',
@@ -11,32 +19,76 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class ProfilePicturePage implements OnInit {
   imageChangedEvent: any = '';
   croppedImage: any = '';
+  myImage: any = null;
+  isMobile = Capacitor.getPlatform() !== 'web';
+  @ViewChild("successDialog") successDialog?:ElementRef<HTMLDialogElement>
+  @ViewChild("errorDialog") errorDialog?:ElementRef<HTMLDialogElement>
+  @ViewChild(ImageCropperComponent) imageCropper?: ImageCropperComponent;
+
 
   constructor(
     private modalCtrl: ModalController,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private loadContr: LoadingController,
+    private http: HttpClient,
+    public fb: FormBuilder,
+    public imageUploadService:ImageUploadService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   dismiss() {
     this.modalCtrl.dismiss();
   }
 
-  fileChangeEvent(event: any): void {
-    this.imageChangedEvent = event;
+  takePicture = async () => {
+    const image = await Camera.getPhoto({
+      quality: 100,
+      allowEditing: false,
+      resultType: CameraResultType.Base64,
+    });
+  
+    const loading = await this.loadContr.create();
+    await loading.present();
+
+    this.myImage = `data:image/jpeg;base64,${image.base64String}`;
+    this.croppedImage = null;
+  };
+  
+  imageLoaded() {
+    this.loadContr.dismiss();
   }
-  imageCropped(event: ImageCroppedEvent) {
-    this.croppedImage = this.sanitizer.bypassSecurityTrustUrl(event.objectUrl as any);
-    // event.blob can be used to upload the cropped image
-  }
-  imageLoaded(image: LoadedImage) {
-    // show cropper
-  }
-  cropperReady() {
-    // cropper ready
-  }
+
   loadImageFailed() {
-    // show message
+    console.log('Image load failed!');
   }
+
+  async stopCrop(){
+    const loading = await this.loadContr.create();
+    await loading.present();
+
+    const crop = await this.imageCropper?.crop(`blob`)
+    loading.dismiss()
+
+    if(!crop){
+      throw new Error("falha ao cortar imagem");
+    }
+    if(!crop.blob){
+      throw new Error("falha ao reter formato da imagem");
+    }
+    const imageBlob:Blob = crop.blob
+
+    await this.imageUploadService.upload(imageBlob)
+    this.dismiss()
+
+  }
+
+
+
+  
 }
+
+
+
+/**/

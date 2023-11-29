@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class FeedPage implements OnInit {
   constructor(private router: Router) {}
+  loved: boolean = false;
 
   ngOnInit() {}
 
@@ -83,6 +84,11 @@ export class FeedPage implements OnInit {
   comentary: string = //"";
     'Não é por nada não mas deve ter acontecido alguma coisa aí ohplaceat quia nam modi assumenda hic totam tenetur cum molestiae corporis vel inventore reprehenderit. Qui enim porro ut praesentium sapiente nam obcaecati incidunt eos repellat sint quo odio quae vel cupiditate aliquid.';
   limitCard: number = 85;
+
+  toggleHeart() {
+    this.loved = !this.loved;
+  }
+
 
   fazerLogout() {
     // Limpe o localStorage

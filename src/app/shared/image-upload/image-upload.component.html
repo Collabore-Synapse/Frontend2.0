@@ -1,0 +1,16 @@
+<ion-card>
+  <ng-container [ngSwitch]="state">
+    <div *ngSwitchCase="states.INIT">
+      <p>Iniciando envio</p>
+    </div>
+    <div *ngSwitchCase="states.UPLOADING">
+      <p>{{ progressMessage }}</p>
+    </div>
+    <div *ngSwitchCase="states.SUCCESS">
+      <p>Imagem enviada com sucesso</p>
+    </div>
+    <div *ngSwitchCase="states.FAIL">
+      <p>Falha ao enviar imagem</p>
+    </div>
+  </ng-container>
+</ion-card>

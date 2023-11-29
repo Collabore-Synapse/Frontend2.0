@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { BehaviorSubject, Observable, from } from 'rxjs';
+import { BehaviorSubject, Observable, from,mergeMap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { CreateAccount, GoogleInfos, Login, VerifyToken } from '../models/auth';
@@ -143,6 +143,13 @@ export class AuthService {
     return this.http.get<any>(`${API}/user/me`);
   }
 
+  findUserPfp(userId:number): Observable<string> {
+    const option = <any>{responseType: 'blob'}
+    return this.http.get<Blob>(`${API}/user/pfp/${userId}`,option).pipe(
+      mergeMap(blob=>from(createImageFromBlob(blob as any)))
+    )
+  }
+
   // verifyToken(values: VerifyToken, authentication: string): Observable<{ message: string }> {
   //   return this.http.post<{ message: string }>(`${API}/user/verifyEmail`, values,
   //     { headers: { Authorization: 'Bearer' + authentication } }
@@ -155,5 +162,19 @@ export class AuthService {
 
   // postUser(userId: number): Observable<any> {
   //   return this.http.get<any>(`${API}/user/find/post/${userId}`);
-  // }
+  // }`
+
+}
+
+function createImageFromBlob(image: Blob): Promise<string> {
+  return new Promise((resolve, reject)=>{
+  let reader = new FileReader();
+  reader.addEventListener("load", () => {
+     resolve(reader.result as string);
+  }, false);
+
+  if (image) {
+     reader.readAsDataURL(image);
+  }
+})
 }

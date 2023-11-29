@@ -13,7 +13,7 @@ export class ProfilePage implements OnInit {
 
   ngOnInit() {}
 
-  profile: String = '';
+  profile: string = '';
   userName: String = '';
 
   imagePaths: string[] = [
@@ -26,9 +26,6 @@ export class ProfilePage implements OnInit {
     '../../../assets/paisagem1.jpg',
     '../../../assets/paisagem2.jpg',
     '../../../assets/paisagem3.jpg',
-    '../../../assets/paisagem4.jpeg',
-    '../../../assets/coreto.png',
-    '../../../assets/paisagem1.jpg',
     '../../../assets/paisagem2.jpg',
     '../../../assets/paisagem3.jpg',
     '../../../assets/paisagem1.jpg',
@@ -40,10 +37,13 @@ export class ProfilePage implements OnInit {
   ];
 
 
-  // ionViewWillEnter() {
-  //   this.authService.findLoggedUser().subscribe((user) => {
-  //     console.log('Usuario: ', user /*'Nome : ', user.name*/),
-  //       (this.userName = user.name);
-  //   });
-  // }
+  ionViewWillEnter() {
+    this.authService.findLoggedUser().subscribe((user) => {
+      console.log('Usuario: ', user /*'Nome : ', user.name*/),
+        (this.userName = user.name);
+        this.authService.findUserPfp(user.id).subscribe(base64=>{this.profile = base64})
+    });
+
+    
+  }
 }

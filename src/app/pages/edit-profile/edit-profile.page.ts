@@ -21,9 +21,8 @@ export class EditProfilePage{
   ionViewWillEnter() {
     this.authService.findLoggedUser()
       .subscribe((user) => {
-        console.log('Usuario: ', user, /*'Nome : ', user.name*/), (
-          this.userForm.controls.name.patchValue(user.name)
-          );
+        console.log('Usuario: ', user, /*'Nome : ', user.name*/), ( this.userForm.controls.name.patchValue(user.name));
+        this.authService.findUserPfp(user.id).subscribe(base64=>{this.profile = base64})
       });
   }
 

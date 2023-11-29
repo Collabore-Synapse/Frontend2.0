@@ -8,6 +8,7 @@ import { ProfilePicturePageRoutingModule } from './profile-picture-routing.modul
 
 import { ProfilePicturePage } from './profile-picture.page';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { ImageUploadModule } from 'src/app/shared/image-upload/image-upload.module';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     IonicModule,
     ProfilePicturePageRoutingModule,
     ImageCropperModule,
+    ImageUploadModule
   ],
   declarations: [ProfilePicturePage]
 })
