@@ -1,20 +1,30 @@
 <ion-content [fullscreen]="true">
+  
   <div>
-    <ion-item class="ion-margin-top">
-      <ion-input
-        type="text"
-        placeholder="Confirme o código"
-        [(ngModel)]="token"
-      ></ion-input>
-    </ion-item>
+    <div class="topo">
+      <ion-button fill="outline" [routerLink]="['/register']">
+        <ion-icon name="chevron-back-outline" style="color: #1e232c"></ion-icon>
+      </ion-button>
+      <h1>Insira o código de verificação abaixo</h1>
+      <p>Para finalizar seu cadastro, digite o código enviado para seu email</p>
+    </div>
+    <div class="insert-token">
+      <ion-item class="ion-margin-top">
+        <ion-input
+          type="text"
+          placeholder="Confirme o código"
+          [(ngModel)]="token"
+        ></ion-input>
+      </ion-item>
 
-    <ion-button
-      type="submit"
-      expand="block"
-      class="ion-margin-top"
-      (click)="verifyToken()"
-    >
-      Confirmar
-    </ion-button>
+      <ion-button
+        type="submit"
+        expand="block"
+        class="ion-margin-top"
+        (click)="verifyToken()"
+      >
+        Confirmar
+      </ion-button>
+    </div>
   </div>
 </ion-content>

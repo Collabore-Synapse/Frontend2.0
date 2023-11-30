@@ -2,14 +2,12 @@ import { ImageUploadService } from './../../shared/image-upload/image-upload.ser
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Capacitor } from '@capacitor/core'; 
 import { LoadingController, ModalController } from '@ionic/angular';
-import { ImageCroppedEvent, ImageCropperComponent, ImageTransform, } from 'ngx-image-cropper';
+import { ImageCropperComponent, } from 'ngx-image-cropper';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Camera, CameraResultType } from '@capacitor/camera';
 import 'hammerjs';
-import { HttpClient, HttpEvent, HttpEventType, HttpHeaders } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { last, map, tap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-profile-picture',
@@ -28,9 +26,7 @@ export class ProfilePicturePage implements OnInit {
 
   constructor(
     private modalCtrl: ModalController,
-    private sanitizer: DomSanitizer,
     private loadContr: LoadingController,
-    private http: HttpClient,
     public fb: FormBuilder,
     public imageUploadService:ImageUploadService
   ) {}

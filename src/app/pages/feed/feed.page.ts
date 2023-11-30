@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
+import { ReportPostPage } from '../report-post/report-post.page';
 
 @Component({
   selector: 'app-feed',
@@ -7,8 +9,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./feed.page.scss'],
 })
 export class FeedPage implements OnInit {
-  constructor(private router: Router) {}
-  loved: boolean = false;
+  constructor(
+    private router: Router,
+    private modalCtrl: ModalController,
+    ) {}
 
   ngOnInit() {}
 
@@ -22,6 +26,7 @@ export class FeedPage implements OnInit {
       description: 'Rua esburacada',
       user: 'Daniel',
       city: 'Pompeia-sp',
+      loved: false,
       comments: [
         {
           id: 1,
@@ -41,6 +46,7 @@ export class FeedPage implements OnInit {
       description: 'Luz queimada',
       user: 'Matheus',
       city: 'Marilia-sp',
+      loved: false,
       comments: [
         {
           id: 1,
@@ -85,16 +91,21 @@ export class FeedPage implements OnInit {
     'Não é por nada não mas deve ter acontecido alguma coisa aí ohplaceat quia nam modi assumenda hic totam tenetur cum molestiae corporis vel inventore reprehenderit. Qui enim porro ut praesentium sapiente nam obcaecati incidunt eos repellat sint quo odio quae vel cupiditate aliquid.';
   limitCard: number = 85;
 
-  toggleHeart() {
-    this.loved = !this.loved;
+  toggleHeart(post: any) {
+    post.loved = !post.loved;
   }
 
-
   fazerLogout() {
-    // Limpe o localStorage
     localStorage.clear();
+    this.router.navigate(['/']);
+  }
 
-    // Navegue para a página de login ou qualquer outra página desejada
-    this.router.navigate(['/']); // Substitua '/login' pelo caminho da sua página de login
+  async openModal() {
+    const modal = await this.modalCtrl.create({
+      component: ReportPostPage,
+      cssClass: "modal-report",
+    });
+    console.log("aberto ");
+    await modal.present();
   }
 }

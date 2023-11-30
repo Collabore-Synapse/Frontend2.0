@@ -12,11 +12,11 @@
   </ion-header>
   <ion-card-content>
     <ion-button (click)="takePicture()" expand="full" *ngIf="!myImage"
-    >Selecione uma imagem</ion-button
-  >
+      >Selecione uma imagem</ion-button
+    >
 
     <image-cropper
-    #cropper
+      #cropper
       [imageBase64]="myImage"
       [maintainAspectRatio]="true"
       [hideResizeSquares]="isMobile"
@@ -25,32 +25,29 @@
       (imageLoaded)="imageLoaded()"
       (loadImageFailed)="loadImageFailed()"
     ></image-cropper>
-
   </ion-card-content>
 </ion-card>
 
 <dialog #successDialog class="info-dialog success-dialog">
   <form method="dialog">
     <div class="dialog-content">
-    <p>Foto alterada</p>
-  </div>
+      <p>Foto alterada</p>
+    </div>
   </form>
 </dialog>
-<dialog #errorDialog class="info-dialog success-dialog">
+<dialog #errorDialog class="info-dialog error-dialog">
   <form method="dialog">
     <div class="dialog-content">
-    <p>Falha ao alterar imagem</p>
-    <button type="submit" autofocus>
-      <ion-button fill="" (click)="errorDialog.close()">
-        <ion-icon name="checkmark-outline" style="color: #1e232c"></ion-icon>
-      </ion-button>
-    </button>
-  </div>
+      <p>Falha ao alterar imagem</p>
+      <button type="submit" autofocus>
+        <ion-button fill="" (click)="errorDialog.close()">
+          <ion-icon name="checkmark-outline" style="color: #1e232c"></ion-icon>
+        </ion-button>
+      </button>
+    </div>
   </form>
 </dialog>
 
-
 <!-- (imageCropped)="suaFuncaoDeManipulacao($event)" -->
-
 
 <!--<img [src]="croppedImage" />-->

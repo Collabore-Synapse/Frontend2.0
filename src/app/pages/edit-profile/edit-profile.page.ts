@@ -16,7 +16,10 @@ export class EditProfilePage{
   public userForm = new FormGroup({
     name:new FormControl(``,[Validators.required])
   })
-  constructor(private modalCtrl: ModalController,public authService: AuthService,private http: HttpClient) { }
+  constructor(
+    private modalCtrl: ModalController,
+    public authService: AuthService,
+    private http: HttpClient) { }
 
   ionViewWillEnter() {
     this.authService.findLoggedUser()

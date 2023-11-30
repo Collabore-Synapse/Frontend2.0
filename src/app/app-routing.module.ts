@@ -52,6 +52,10 @@ const routes: Routes = [
     path: 'profile-picture',
     loadChildren: () => import('./pages/profile-picture/profile-picture.module').then( m => m.ProfilePicturePageModule)
   },
+  {
+    path: 'report-post',
+    loadChildren: () => import('./pages/report-post/report-post.module').then( m => m.ReportPostPageModule)
+  },
 
 
 ]

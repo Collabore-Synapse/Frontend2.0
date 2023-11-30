@@ -159,11 +159,14 @@
         ion-textarea {
           border-width: 0.063rem;
           border-style: solid;
-          border-color: var(--ColorOne);
           border-radius: 0.25rem;
-          padding: 0 !important;
+          --padding-top: 0 !important;
+          padding-left: 0.5rem !important;
           height: auto;
           width: 100%;
+          
+          border-color: var(--ColorOne);
+          color: #000000;
         }
       }
     }

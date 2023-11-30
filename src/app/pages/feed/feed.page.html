@@ -6,7 +6,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="false">
-  <ion-card routerLink="/post-details" *ngFor="let post of posts">
+  <ion-card *ngFor="let post of posts">
     <ion-card-header>
       <img src="{{post.imgProfile}}" alt="Foto de Perfil" />
       <ion-card-content>
@@ -16,26 +16,26 @@
     </ion-card-header>
 
     <ion-card-content>
-      <img src="{{post.imgProblem}}" alt="Foto do Acontecimento" />
+      <img routerLink="/post-details" src="{{post.imgProblem}}" alt="Foto do Acontecimento" />
       <div class="botoes">
         <div class="esquerda">
-          <button class="like" (click)="toggleHeart()">
-            <ion-icon [name]="loved ? 'heart' : 'heart-outline'"></ion-icon>
+          <button class="like" (click)="toggleHeart(post)">
+            <ion-icon [name]="post.loved ? 'heart' : 'heart-outline'"></ion-icon>
           </button>
           <button class="coments">
             <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
           </button>
         </div>
-        <button class="report">
+        <button (click)="openModal()" class="report">
           <ion-icon name="ellipsis-vertical-outline"></ion-icon>
         </button>
       </div>
     </ion-card-content>
 
     <div class="rodape">
-      <h3>{{post.title}}</h3>
-      <ion-card-subtitle>Elogio</ion-card-subtitle>
-      <p>
+      <h3 routerLink="/post-details">{{post.title}}</h3>
+      <ion-card-subtitle routerLink="/post-details">Elogio</ion-card-subtitle>
+      <p routerLink="/post-details">
         {{ comentary.length <= limitCard ? comentary : (comentary |
         slice:0:limitCard) + '...' }}
       </p>

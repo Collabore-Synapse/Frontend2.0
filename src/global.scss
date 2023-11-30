@@ -61,6 +61,16 @@ ion-modal {
     --width: 100%;
     --border-radius: 1rem;
   }
+  &.modal-report{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    --height: 26.5vh;
+    --width: 100%;
+    --border-radius: 1rem;
+  }
 }
 
 .info-dialog::backdrop {
