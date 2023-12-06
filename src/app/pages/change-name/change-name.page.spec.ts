@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { LocationModal } from './location.page';
+import { ChangeNamePage } from './change-name.page';
 
-describe('LocationPage', () => {
-  let component: LocationModal;
-  let fixture: ComponentFixture<LocationModal>;
+describe('ChangeNamePage', () => {
+  let component: ChangeNamePage;
+  let fixture: ComponentFixture<ChangeNamePage>;
 
   beforeEach(async(() => {
-    fixture = TestBed.createComponent(LocationModal);
+    fixture = TestBed.createComponent(ChangeNamePage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

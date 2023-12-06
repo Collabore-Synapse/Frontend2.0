@@ -10,7 +10,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { environment } from 'src/environments/environment';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './auth.interceptor';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { ImageCropperModule } from 'ngx-image-cropper';
@@ -28,7 +28,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     AngularFireAuthModule,
     HttpClientModule,
     FormsModule,
-    ImageCropperModule
+    ImageCropperModule,
   ],
   providers: [
     { 

@@ -52,6 +52,7 @@ ion-content {
     // width: 100%;
 
     --background: #ffffff;
+    --color:black;
 
     ion-card-header {
       display: flex;
@@ -66,6 +67,7 @@ ion-content {
         margin-top: 0.1rem;
         border-radius: 0.875rem;
       }
+      
 
       //-----------------------------------------------------
 
@@ -164,3 +166,6 @@ ion-content {
 }
 // }
 
+.reaction-count{
+  color: black;
+}

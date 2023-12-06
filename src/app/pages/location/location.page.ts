@@ -2,18 +2,26 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as L from 'leaflet';
 import { Geolocation, Position } from '@capacitor/geolocation';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-location',
   templateUrl: './location.page.html',
   styleUrls: ['./location.page.scss'],
 })
-export class LocationPage implements OnInit {
+export class LocationModal implements OnInit {
   map!: L.Map;
-  customIcon!: L.Icon;  
+  customIcon!: L.Icon;
   circle!: L.Circle;
   marker!: L.Marker;
-  constructor(private router: Router) {}
+  constructor(private modalCtrl: ModalController) {}
+
+  handleRefresh(event: any) {
+    setTimeout(() => {
+      // Any calls to load data go here
+      event.target.complete();
+    }, 2000);
+  }
 
   async ngOnInit() {
     await this.initMap();
@@ -32,7 +40,7 @@ export class LocationPage implements OnInit {
     }, 0);
 
     if ('geolocation' /*in navigator*/) {
-      /*navigator.*/Geolocation.getCurrentPosition().then(
+      /*navigator.*/ Geolocation.getCurrentPosition().then(
         (position: Position) => {
           const lat = position.coords.latitude;
           const lon = position.coords.longitude;
@@ -106,10 +114,16 @@ export class LocationPage implements OnInit {
     } else {
       console.error('Geolocalização não suportada pelo navegador.');
     }
-  }  
+  }
+  close() {
+    this.modalCtrl.dismiss(undefined, `close`);
+  }
+  submit() {
+    const position = this.marker.getLatLng();
+    this.modalCtrl.dismiss(position, `submit`);
+  }
 }
 
-
 // voltarHome(): void {
-  //   this.router.navigate(['/tabs/new-post']);
-  // }
+//   this.router.navigate(['/tabs/new-post']);
+// }

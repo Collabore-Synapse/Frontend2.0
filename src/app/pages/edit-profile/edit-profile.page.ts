@@ -6,6 +6,8 @@ import { environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { User } from 'src/app/shared/models/auth';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ChangeNamePage } from '../change-name/change-name.page';
+import { LocationModal } from '../location/location.page';
 
 @Component({
   selector: 'app-edit-profile',
@@ -32,10 +34,21 @@ export class EditProfilePage{
   profile: string = '';
   userName: string = 'UserAPI';
 
+  
+
   async openModal() {
     const modal = await this.modalCtrl.create({
       component: ProfilePicturePage,
       cssClass: "modal-picture",
+    });
+    console.log("aberto ");
+    await modal.present();
+  }
+
+  async openModalSuccess() {
+    const modal = await this.modalCtrl.create({
+      component: ChangeNamePage,
+      cssClass: "modal-name",
     });
     console.log("aberto ");
     await modal.present();
@@ -54,7 +67,7 @@ export class EditProfilePage{
   async setName(newName:string){
     this.http.patch(`${environment.API}/user/setName`,{newName}).subscribe(
       ()=>{
-        alert(`foi`)
+        this.openModalSuccess();
       }
     )
   }

@@ -24,11 +24,6 @@ const routes: Routes = [
     path: 'collabore',
     loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule)
   },
-  
-  {
-    path: 'location',
-    loadChildren: () => import('./pages/location/location.module').then( m => m.LocationPageModule)
-  },
   {
     path: 'post-details',
     loadChildren: () => import('./pages/post-details/post-details.module').then( m => m.PostDetailsPageModule)
@@ -56,9 +51,14 @@ const routes: Routes = [
   {
     path: 'report-post',
     loadChildren: () => import('./pages/report-post/report-post.module').then( m => m.ReportPostPageModule)
-  },  {
+  },
+  {
     path: 'login-error',
     loadChildren: () => import('./pages/login-error/login-error.module').then( m => m.LoginErrorPageModule)
+  },
+  {
+    path: 'change-name',
+    loadChildren: () => import('./pages/change-name/change-name.module').then( m => m.ChangeNamePageModule)
   },
 
 
