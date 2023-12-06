@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API: 'http://192.168.1.8:3000',
+  API: 'http://192.168.86.11:3000',
   firebase : {
     apiKey: "AIzaSyCneJdICIAFqnR_k8jQGdi4hLz20HGtk4Q",
     authDomain: "collabore-b865e.firebaseapp.com",

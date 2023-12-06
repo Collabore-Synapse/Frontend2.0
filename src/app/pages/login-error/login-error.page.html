@@ -1,0 +1,21 @@
+<ion-card>
+  <ion-card-header>
+    <div class="title">
+      <ion-card-title>Erro ao fazer Login</ion-card-title>
+    </div>
+  </ion-card-header>
+
+  <ion-card-content>
+    <div class="subtitle">
+      <p>
+        Verifique seu e-mail e/ou senha ou faça seu cadastro
+      </p>
+    </div>
+  </ion-card-content>
+
+  <div class="rodape">
+      <div class="cancel"><button (click)="dismiss()">Tentar novamente</button></div>
+    <div class="confirm"><button type="submit" routerLink="/register" (click)="dismiss()">Cadastre-se</button></div>
+  </div>
+</ion-card>
+

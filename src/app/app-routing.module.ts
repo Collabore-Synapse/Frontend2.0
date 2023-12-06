@@ -48,14 +48,19 @@ const routes: Routes = [
   {
     path: 'token-verification',
     loadChildren: () => import('./pages/token-verication/token-verication.module').then( m => m.TokenVericationPageModule)
-  },  {
+  },
+  {
     path: 'profile-picture',
     loadChildren: () => import('./pages/profile-picture/profile-picture.module').then( m => m.ProfilePicturePageModule)
   },
   {
     path: 'report-post',
     loadChildren: () => import('./pages/report-post/report-post.module').then( m => m.ReportPostPageModule)
+  },  {
+    path: 'login-error',
+    loadChildren: () => import('./pages/login-error/login-error.module').then( m => m.LoginErrorPageModule)
   },
+
 
 
 ]
