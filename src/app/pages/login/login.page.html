@@ -13,13 +13,13 @@
   <form [formGroup]="formGroup" class="form" (ngSubmit)="submitLogin()">
 
     <ion-item class="ion-margin-top">
-      <ion-input type="email" placeholder="Insira seu e-mail" formControlName="email"></ion-input>
+      <ion-input type="email" labelPlacement="floating" label="E-mail" placeholder="Insira seu e-mail" formControlName="email"></ion-input>
       <ion-note class="ion-text-center" slot="end" color="danger" *ngIf="formGroup.get('email')?.dirty && formGroup.get('email')?.hasError('required')">Obrigatório</ion-note>
       <ion-note class="ion-text-center" slot="end" color="danger" *ngIf="formGroup.get('email')?.dirty && formGroup.get('email')?.hasError('email')">E-mail inválido</ion-note>
     </ion-item>
 
     <ion-item class="ion-margin-top">
-      <ion-input type="password" placeholder="Insira sua senha" formControlName="password"></ion-input>
+      <ion-input type="password" labelPlacement="floating" label="Senha" placeholder="Insira sua senha" formControlName="password"></ion-input>
       <ion-note class="ion-text-center" slot="end" color="danger" *ngIf="formGroup.get('password')?.dirty && formGroup.get('password')?.hasError('required')">Obrigatório</ion-note>
     </ion-item>
 

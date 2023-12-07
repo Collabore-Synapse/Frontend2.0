@@ -1,0 +1,20 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="ion-text-center">
+    <ion-buttons slot="end">
+      <ion-button (click)="onCancel()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>  </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding ion-text-center">
+  <ion-list>
+    <ion-item *ngFor="let comment of comments">
+    <ion-note color="medium" class=" ion-align-self-center">
+      {{ comment.text }} 
+    </ion-note>
+  </ion-item>
+  </ion-list>
+</ion-content>
