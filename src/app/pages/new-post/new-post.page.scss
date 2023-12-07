@@ -128,6 +128,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 20rem;
 
     position: relative;
     bottom: 0;
@@ -138,7 +139,7 @@
 
       transition: --background 0.9s, color 0.9s;
       margin-bottom: 0.438rem;
-      width: 20rem;
+      width: 100%;
       height: 3.5rem;
       position: relative;
       bottom: 0;
@@ -148,9 +149,27 @@
         --color: #fff;
         --border-radius: 0.625rem;
       }
+
+      .save {
+        --border-radius: 0.625rem;
+        --background: #33303e;
+        --padding: 0.313rem;
+
+        transition: --background 0.9s, color 0.9s;
+        margin-bottom: 0.438rem;
+        width: 100%;
+        height: 3.5rem;
+        position: relative;
+        bottom: 0;
+
+        .save:hover {
+          --background: #4e4b59;
+          --color: #fff;
+          --border-radius: 0.625rem;
+        }
+      }
     }
   }
-  
 }
 
 //--------------------------------------------------------

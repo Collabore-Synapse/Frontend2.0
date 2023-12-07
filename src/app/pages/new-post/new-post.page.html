@@ -26,11 +26,7 @@
     </div>
     <div class="inferior">
       <p class="select">Selecione a categoria da publicação:</p>
-      <ion-segment
-        class="escolhas"
-        formControlName="tags_id"
-        value="elogio"
-      >
+      <ion-segment class="escolhas" formControlName="tags_id" value="elogio">
         <ion-segment-button class="elogio" [value]="segments.ELOGIO">
           <ion-label>Elogio</ion-label>
           <ion-icon name="trophy-outline"></ion-icon>
@@ -66,53 +62,16 @@
           ></ion-textarea>
         </div>
       </div>
-      <!-- <div *ngIf="selectedSegment === 'alerta'">
-        <div class="inputs">
-          <ion-input
-            type=""
-            maxlength="40"
-            required="true"
-            label="Titulo*"
-            labelPlacement="floating"
-            ngModel
-            class="title"
-          ></ion-input>
-          <ion-textarea
-            required="true"
-            placeholder="Diga-nos qual o seu alerta..."
-            [autoGrow]="true"
-            class="description"
-          ></ion-textarea>
-        </div>
-      </div>
-      <div *ngIf="selectedSegment === 'critica'">
-        <div class="inputs">
-          <ion-input
-            type=""
-            maxlength="40"
-            required="true"
-            label="Titulo*"
-            labelPlacement="floating"
-            ngModel
-            class="title"
-          ></ion-input>
-          <ion-textarea
-            required="true"
-            placeholder="Faça aqui sua reclamação..."
-            [autoGrow]="true"
-            class="description"
-          ></ion-textarea>
-        </div>
-      </div> -->
       <div class="localizacao">
         <ion-button class="localizar" (click)="getLocation()">
           Localização
         </ion-button>
-      </div>
-      <div class="">
-        <ion-button class="" type="submit" [disabled]="postForm.invalid">
-          Salvar
-        </ion-button>
+        <!-- <div class=""> -->
+          <ion-button class="save" type="submit" [disabled]="postForm.invalid">
+            
+            Publicar
+          </ion-button>
+        <!-- </div> -->
       </div>
     </div>
   </form>

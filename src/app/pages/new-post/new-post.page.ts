@@ -74,6 +74,8 @@ export class NewPostPage implements AfterViewInit {
     console.log(this.postForm.value);
   }
 
+  //---------------------------------------------------------------------------------------
+  
   takePicture = async () => {
     const image = await Camera.getPhoto({
       quality: 100,
@@ -89,6 +91,8 @@ export class NewPostPage implements AfterViewInit {
     this.imageUrl=imageUrl
     this.postForm.get(`image`)?.setValue(blob);
   };
+
+  //---------------------------------------------------------------------------------------------
 
   onSubmit() {
     if (this.postForm.valid) {
