@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { IPostFeed, PostService } from 'src/app/shared/services/post.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,6 +8,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
+  posts:IPostFeed[]=[]
   constructor(
     public authService: AuthService,
   ) {}
@@ -16,25 +18,7 @@ export class ProfilePage implements OnInit {
   profile: string = '';
   userName: String = '';
 
-  imagePaths: string[] = [
-    '../../../assets/coreto.png',
-    '../../../assets/paisagem1.jpg',
-    '../../../assets/paisagem2.jpg',
-    '../../../assets/paisagem3.jpg',
-    '../../../assets/paisagem1.jpg',
-    '../../../assets/paisagem3.jpg',
-    '../../../assets/paisagem1.jpg',
-    '../../../assets/paisagem2.jpg',
-    '../../../assets/paisagem3.jpg',
-    '../../../assets/paisagem2.jpg',
-    '../../../assets/paisagem3.jpg',
-    '../../../assets/paisagem1.jpg',
-    '../../../assets/paisagem1.jpg',
-    '../../../assets/paisagem2.jpg',
-    '../../../assets/paisagem3.jpg',
-    '../../../assets/paisagem4.jpeg',
-    // para chmar a API
-  ];
+  imagePaths: string[] = [];
 
 
   ionViewWillEnter() {

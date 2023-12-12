@@ -10,10 +10,10 @@
     <h3>Suas colaboraçoes</h3>
     <div class="imgs">
       <div
-        *ngFor="let imagePath of imagePaths"
+        *ngFor="let post in posts"
         class="minis"
       >
-        <img [src]="imagePath" alt="Miniatura da publicação" />
+        <img src="{{post.image.id}}" alt="Miniatura da publicação" />
       </div>
     </div>
   </div>

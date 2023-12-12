@@ -16,12 +16,18 @@
     </ion-card-header>
 
     <ion-card-content>
-      <img routerLink="/post-details" src="{{post.image}}" alt="Foto do Acontecimento" />
+      <img
+        routerLink="/post-details"
+        src="{{post.image}}"
+        alt="Foto do Acontecimento"
+      />
       <div class="botoes">
         <div class="esquerda">
           <button class="like" (click)="toggleHeart(post)">
             <ion-icon [name]="false ? 'heart' : 'heart-outline'"></ion-icon>
-            <ion-label class="reaction-count">{{post.reactions.quantidadeLike}}</ion-label>
+            <ion-label class="reaction-count"
+              >{{post.reactions.quantidadeLike}}</ion-label
+            >
           </button>
           <button class="coments">
             <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
@@ -37,7 +43,7 @@
       <h3 routerLink="/post-details">{{post.title}}</h3>
       <ion-card-subtitle routerLink="/post-details">Elogio</ion-card-subtitle>
       <p routerLink="/post-details">
-        {{ post.text.length <= limitCard ? post.text : (comentary |
+        {{ post.text.length <= limitCard ? post.text : (post.text |
         slice:0:limitCard) + '...' }}
       </p>
     </div>

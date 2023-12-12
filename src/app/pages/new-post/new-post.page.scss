@@ -128,7 +128,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 20rem;
+    justify-content: center;
+    width: 24rem;
 
     position: relative;
     bottom: 0;
@@ -139,7 +140,7 @@
 
       transition: --background 0.9s, color 0.9s;
       margin-bottom: 0.438rem;
-      width: 100%;
+      width: 80%;
       height: 3.5rem;
       position: relative;
       bottom: 0;
@@ -157,7 +158,7 @@
 
         transition: --background 0.9s, color 0.9s;
         margin-bottom: 0.438rem;
-        width: 100%;
+        width: 80% !important;
         height: 3.5rem;
         position: relative;
         bottom: 0;

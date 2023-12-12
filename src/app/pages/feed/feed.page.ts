@@ -17,6 +17,8 @@ export class FeedPage implements OnInit {
     private postService: PostService
     ) {}
 
+    
+
   ngOnInit() {
     this.postService.list().subscribe(res=>{
       this.posts=res
@@ -25,8 +27,6 @@ export class FeedPage implements OnInit {
   }
 
   
-  comentary: string = //"";
-    'Não é por nada não mas deve ter acontecido alguma coisa aí ohplaceat quia nam modi assumenda hic totam tenetur cum molestiae corporis vel inventore reprehenderit. Qui enim porro ut praesentium sapiente nam obcaecati incidunt eos repellat sint quo odio quae vel cupiditate aliquid.';
   limitCard: number = 85;
 
   toggleHeart(post: any) {
