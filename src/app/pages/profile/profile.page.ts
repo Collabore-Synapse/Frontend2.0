@@ -11,14 +11,18 @@ export class ProfilePage implements OnInit {
   posts:IPostFeed[]=[]
   constructor(
     public authService: AuthService,
+    private postService: PostService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.postService.listByLoggedUser().subscribe(res=>{
+      this.posts=res
+      console.log(res);
+    })
+  }
 
   profile: string = '';
   userName: String = '';
-
-  imagePaths: string[] = [];
 
 
   ionViewWillEnter() {

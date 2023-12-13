@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FeedPage } from '../feed/feed.page';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { IPostFeed, PostService } from 'src/app/shared/services/post.service';
 
 @Component({
   selector: 'app-post-details',
@@ -7,10 +8,18 @@ import { FeedPage } from '../feed/feed.page';
   styleUrls: ['./post-details.page.scss'],
 })
 export class PostDetailsPage implements OnInit {
-
-  constructor() { }
+  public post!:IPostFeed;
+  console(){
+    console.log(this.post);
+  }
+  constructor(
+    private route: ActivatedRoute,
+  ) {}
 
   ngOnInit() {
+    this.route.data.subscribe(({ post }) => {
+      console.log(post);
+    });
   }
-
+  
 }

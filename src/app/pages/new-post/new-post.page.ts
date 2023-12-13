@@ -101,7 +101,7 @@ export class NewPostPage implements AfterViewInit {
       
       this.postService.create(post).subscribe({
         next: (res) => {
-          console.log(res)
+          window.history.back();
         },
         error: (res) => {console.error(res)},
         complete: () => {},

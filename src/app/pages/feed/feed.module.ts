@@ -7,12 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { FeedPageRoutingModule } from './feed-routing.module';
 
 import { FeedPage } from './feed.page';
+import { PostModule } from 'src/app/shared/post/post.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    PostModule,
     FeedPageRoutingModule
   ],
   declarations: [FeedPage]

@@ -3,10 +3,10 @@ import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login-error',
-  templateUrl: './login-error.page.html',
-  styleUrls: ['./login-error.page.scss'],
+  templateUrl: './login-error.modal.html',
+  styleUrls: ['./login-error.modal.scss'],
 })
-export class LoginErrorPage implements OnInit {
+export class LoginErrorModal implements OnInit {
 
   constructor(private modalCtrl: ModalController) { }
 

@@ -4,7 +4,7 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { ModalController } from '@ionic/angular';
-import { LoginErrorPage } from '../login-error/login-error.page';
+import { LoginErrorModal } from '../login-error/login-error.modal';
 
 @Component({
   selector: 'app-login',
@@ -60,7 +60,7 @@ export class LoginPage implements OnInit {
   
   async openModal() {
     const modal = await this.modalCtrl.create({
-      component: LoginErrorPage,
+      component: LoginErrorModal,
       cssClass: "modal-error",
     });
     console.log("deu erro ai ");

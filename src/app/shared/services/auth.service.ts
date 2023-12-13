@@ -121,6 +121,7 @@ export class AuthService {
   async signOut() {
     await this.auth.signOut();
     this.user = null;
+    this.deleteToken();
   }
 
   loginWithGoogle(infos: GoogleInfos): Observable<GoogleInfos> {

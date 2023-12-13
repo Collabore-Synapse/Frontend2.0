@@ -28,6 +28,18 @@ export class PostService {
   list(): Observable<IPostFeed[]> {
     return this.http.get<IPostFeed[]>(`${environment.API}/post/find`);
   }
+
+  listByUser(userId:number): Observable<IPostFeed[]> {
+    return this.http.get<IPostFeed[]>(`${environment.API}/post/user/${userId}`);
+  }
+
+  listByLoggedUser(): Observable<IPostFeed[]> {
+    return this.http.get<IPostFeed[]>(`${environment.API}/user/me/posts`);
+  }
+
+  findById(postId:number): Observable<IPostFeed>{
+    return this.http.get<IPostFeed>(`${environment.API}/post/${postId}`);
+  }
 }
 
 export interface IPost{

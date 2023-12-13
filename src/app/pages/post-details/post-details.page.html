@@ -3,14 +3,14 @@
     <ion-button fill="outline" [routerLink]="['/collabore/feed']">
       <ion-icon name="chevron-back-outline" style="color: #1e232c"></ion-icon>
     </ion-button>
-    <img src="../../../assets/modo-serio.png" alt="Foto de Perfil" />
+    <img [src]="['{{post?.pfp}}']" alt="Foto de Perfil" />
     <div class="infos">
-      <h1>Usuario User</h1>
-      <p>Marília-sp</p>
+      <h1>{{post?.name}}</h1>
+      <p>{{post?.city}}</p>
     </div>
   </div>
   <div class="imagem-pub">
-    <img src="../../../assets/paisagem2.jpg" alt="Publica~cao do usuario" />
+    <img src="" alt="Publicação do usuario" />
     <div class="botoes">
       <div class="esquerda">
         <button class="like">
@@ -22,14 +22,10 @@
       </button>
     </div>
     <div class="texts">
-      <h2>Aconteceu alguma coisa ali</h2>
+      <h2>{{post?.title}}</h2>
       <p class="category">Elogio</p>
       <p class="description">
-        Lorem ipsum dolor sit amet. Est fugiat nesciunt ut fugit nihil sed
-        placeat quia nam modi assumenda hic totam tenetur cum molestiae corporis
-        vel inventore reprehenderit. Qui enim porro ut praesentium sapiente nam
-        obcaecati incidunt eos repellat sint quo odio quae vel cupiditate
-        aliquid.
+        {{post?.text}}
       </p>
     </div>
   </div>

@@ -4,17 +4,15 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { LoginErrorPageRoutingModule } from './login-error-routing.module';
-
-import { LoginErrorPage } from './login-error.page';
+import { LoginErrorModal } from './login-error.modal';
 
 @NgModule({
+  declarations: [LoginErrorModal],
   imports: [
     CommonModule,
-    FormsModule,
     IonicModule,
-    LoginErrorPageRoutingModule
+    FormsModule
   ],
-  declarations: [LoginErrorPage]
+  exports: [LoginErrorModal]
 })
-export class LoginErrorPageModule {}
+export class LoginErrorModalModule {}

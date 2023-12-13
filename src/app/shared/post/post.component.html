@@ -1,0 +1,42 @@
+<ion-card>
+  <ion-card-header>
+    <img src="{{post.link_pfp ? post.link_pfp : '../../assets/ProfileAvatar.svg'}}" alt="Foto de Perfil" />
+    <ion-card-content>
+      <ion-card-title>{{post.name}}</ion-card-title>
+      <ion-card-subtitle>{{post.city}}</ion-card-subtitle>
+    </ion-card-content>
+  </ion-card-header>
+
+  <ion-card-content>
+    <img
+      routerLink="/post-details/{{post.id}}"
+      src="{{post.image}}"
+      alt="Foto do Acontecimento"
+    />
+    <div class="botoes">
+      <div class="esquerda">
+        <button class="like" (click)="toggleHeart(post)">
+          <ion-icon [name]="false ? 'heart' : 'heart-outline'"></ion-icon>
+          <ion-label class="reaction-count"
+            >{{post.reactions.quantidadeLike}}</ion-label
+          >
+        </button>
+        <button class="coments">
+          <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+        </button>
+      </div>
+      <button (click)="openModal()" class="report">
+        <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+      </button>
+    </div>
+  </ion-card-content>
+
+  <div class="rodape">
+    <h3 [routerLink]="['post-details',post.id]">{{post.title}}</h3>
+    <ion-card-subtitle [routerLink]="['post-details',post.id]">Elogio</ion-card-subtitle>
+    <p [routerLink]="['post-details',post.id]">
+      {{ post.text.length <= limitCard ? post.text : (post.text |
+      slice:0:limitCard) + '...' }}
+    </p>
+  </div>
+</ion-card>
